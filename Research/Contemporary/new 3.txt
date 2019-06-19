@@ -1,0 +1,22 @@
+=================Abstract =====================
+1) Intro
+2) Problem statement
+3) Contribution
+4) Approach
+5) Results
+
+Wide variety of applications are getting on to blockchain. With its unique features, such as consensus, immutability, transparency and cryptographic security, blockchain opens doors of solutions to many problems in the current system. Regulation Technology (RegTech) has potential to convert regulatory constraints into advantages. The blockchain technology is an enabler not only for FinTech but also in the area of RegTech. This paper talks about, how blockchain and smart contracts can be implemented to help the governing bodies and the allied third parties in taking appropriate decisions based on past and present of the individual based on the identity management. This paper will highlight the prototype developed to  for vehicle ticketing management system which will keep track of all the traffic rules violations by an individual. It will help the law enforcement agencies in keeping track record of an individual and taking appropriate actions such as cancellation of drivers license. Prototype developed will help government to keep track of the driver by assigning it a ticket whenever needed. Third parties such as insurance companies can also be benefited by these smart contracts by increasing the premium for the vehicle based on its owners track record. 
+
+RegTech
+
+intro > regtech/ fintech/ convert regulatory constraint to advantage
+ 
+problem statement> Regtech have the scope even in other domains than fiancial. 
+ such as as governemtn, manual work, curruption, processing time... and others
+
+contri > this project will implement a prototype which will be based on trustless DLT blockchain impelemantion. 
+
+approach > we have devised a business case of a prototype for ticketing management system which will manage the voilations point required by the law enforcement. 
+
+result >   we have impelmented a prototype blockchain based dApp which is usable by 
+traffic police to assign ticket to driver under voilation and the third party could use the samert contract to provide their services.

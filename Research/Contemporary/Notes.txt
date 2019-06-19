@@ -1,0 +1,45 @@
+=================Abstract =====================
+1) Intro
+2) Problem statement
+3) Contribution
+4) Approach
+5) Results
+
+
+With disruption in the finance industry by technology, there has been the birth of a new industry called FinTech. Though it is still in its infancy stage, the past decade has seen a substantial rise in the amount of academic literature review in this field.
+Due to its recency, there are a lot of research gaps in this field.
+This paper highlights seven main gaps in the domain of FinTech, right from changing institution structure to ensuring security and privacy of the data as well as processing such large amounts of data also with the disruption with new methods in payments and crowdfunding. Along with this, it also sheds light on cryptofinance. Also, this paper sheds light on how FinTech can help financial regulators.
+These gaps are identified by researching various reports, white papers, academic papers, books and interview with relevant personals. 
+By collecting all this data and consolidating it in a single paper should provide a good knowledge base for further research to be carried out in these 8 fields of FinTech. It is also found that few of the areas are well established in research whereas others are still untouched thus highlighting the work which needs to be done.
+
+
+=================Intro =====================
+
+1) Background
+2) Importance
+3) Research Question
+4) Limitations
+5) Assumptions
+6) Structure of the Report (following sections) "In the next section"
+
+
+***Use Impact Factor of referencing***
+
+What you are doing
+
+******* USe Effective instead of efficient****
+
+draw.io
+
+normal or t distribution
+
+data distribution
+Meethodology : How to evaluate results of work? chi squared, t test, dia bol mariano test
+=================Abstract =====================
+
+
+PPT: 17th April 22:00
+Why its important
+what other have done
+how are you going to do
+

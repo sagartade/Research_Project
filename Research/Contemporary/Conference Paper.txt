@@ -1,0 +1,198 @@
+Title: Can ANN-GARCH model prove statistically significant over the state of the art in forecasting the price volatility of the Ethereum?
+==========================================================
+Abstract:
+With a market capitalization of the US $18 billion, Ethereum is the second most popular cryptocurrency traded. With such a significant market share, it has captured the interests of many, from academicians to investors to the blockchain application developers. Even after being so popular, research in this area of cryptocurrency is scarce. This research paper is targeted to answer the question if ANN-GARCH model proves statistically significant over the state of the art in forecasting the price volatility of the Ethereum. This research will contribute to the academic community in having a better understanding of this new asset along with the insight if hybridization techniques can work well with such a volatile asset. Variations of GARCH and ANN will be statically tested to get the answer to the proposed question. This research looks promising with the features of ANN for detection of nonlinearity combined with volatility prediction GARCH to accurately predict the volatility. 
+
+
+1) Problem Statement
+2) Contribution
+3) Approach
+4) Results
+==========================================================
+Introduction:
+
+As one of the major asset class, cryptocurrencies are gaining huge popularity among the academicians and investors. With market capital more than $170 billion and increasing, cryptocurrencies are becoming major part of global economy (CoinMarketCap, 2019). With the rise in market capital, there is also rise in number of cryptocurrencies which are making their way to the market. Apart from major players, such as Bitcoin, Ethereum, Ripple, there are more than 2000 cryptocurrencies in circulation (CoinLore, 2019). The first cryptocurrency, Bitcoin, is designed to transact money anonymously with full transparency, thus challenging the working of traditional financial institutions. This asset class is new and has started becoming popular in recent days. Also, this asset class is very loosely regulated thus making it more uncertain and volatile for prediction. These factors make it very fascinating for researchers and academicians to explore this modern space. 
+Ethereum which is the second most popular cryptocurrency has a market capitalization of $18 billion (CoinMarketCap, 2019). Ethereum is a unique cryptocurrency in itself. It can be transacted for execution of applications along with transfers as payment. Lot of research is being done in for predicting the prices and volatility of Bitcoin but relatively less efforts are put in towards analysis of Ethereum. Thus making it vital for this research.
+This research is aimed towards finding an answer to the following question: Can ANN-GARCH model prove statistically significant over the state of the art in forecasting the price volatility of the Ethereum?
+
+Artificial Neural Network (ANN) and General Auto-Regressive Conditional Heteroskedasticity (GARCH) are the two machine learning techniques used in this research for forecasting the volatility. Nonlinear effects of volatility can be detected by using ANN which are not captured by GARCH and its derivatives (Kristjanpoller and Minutolo, 2018). Thus improvising on traditional GARCH and its variations, hybridization looks promising in delivering the statistically significant results for forecasting.
+To understand the Ethereum as a cryptocurrency and how the hybrid models perform on such volatile asset class, following objectives are defined:
+1) Building models for forecasting volatility of Ethereum with variations in ANN configurations and suitable GARCH derivatives.
+2) Comparing these models with each other to find the best fit model.
+3) Comparing the best fit model with the state of the art in the Ethereum volatility forecasting space. 
+4) Highlighting the key differences between Ethereum and Bitcoin.
+
+This research will only consider the facts presented in the literature review for attaining the 4th objective. It will be very interesting to see the behavioural similarities and differences between the two major cryptocurrencies.
+
+The next section of this paper will shade light on literature reviewed in the space of cryptocurrency. It will also consist of review on the use of such hybrid models previously and their findings. Lastly, it will talk about the state of the art in forecasting volatility of Ethereum. Following this will be the proposed methodology to carry out this research followed by the results. Final section will include conclusion and discussion about the future work. 
+
+1) Background
+2) Importance
+3) Research Question
+4) Limitations
+5) Assumptions
+6) Structure of the Report (following sections) "In the next section"
+==========================================================
+Related Work:
+
+According to the researchers Pichl and Kaizoji (2017), there is very limited research regarding cryptocurrencies in the past. Most of which revolves around bitcoin and it seems to be increasing every year. As discussed in the earlier section, cryptocurrency market is very loosely regulated, thus there are few researchers who are exploring this space and trying to standardize the regulations which can help governments(Böhme et al., 2015). In this paper, researchers talk about various risks and how cryptocurrencies like Bitcoin can be used for illegal activities. Similarly, Lu and Tu (2015) speak about their concerns about capital movement and active Bitcoin market in China. They also speak about how imposing regulations by People's Republic of China has helped in stopping capital flight completely.
+
+On the other hand researchers such as (Brière, Oosterlinck and Szafarz (2015) talk about investment opportunities of the cryptocurrencies such as bitcoin and how it can help in making a portfolio stronger. They talk about how bitcoin is proved to have great returns in short period of time. Their research consists of only the upward trend thus missing out the major trench during 2017. Bhattacharjee (2016) compares about the forecasted returns of Dollar, Euro and Rubels accross the Bitcoin. Researcher uses GARCH (1,1) and GARCH(1,2) to forecast the volatility testing thus concluding, the returns on fiat currencies were likely to remain constant where as bitcoin has shown high volatility.
+
+Dumitrescu (2017) in their research talks about in detail advantages and disadvantages of cryptocurrencies. Paper covers four major advantages which are personal data protection, how it can lower the transaction fees, fast and transparent transactions will avoid fraudulent and overhead charges and even after being volatile at this stage, how it will reach a point where it will be immune to inflation. This research also highlights some of the key concerns, such as lack of solid anonymity, ponzi schemes around cryptocurrencies, and the trust issues it faces due to its newness.
+
+In the research paper, authors discuss about the uniqueness of the Ethereum as a cryptocurrency (Wang et al., 2019). They state substantial amount of the funds and accounts for Ethereum are managed by smart contracts. Though their research focuses on how to reduce the costs for executing smart contracts, they briefly talk about the factors affecting the Ethereum pricing.
+
+In the whitepaper published on Ethereum, the author speaks about how Ethereum is an updated version of cryptocurrency with advanced features such as withdrawal limits and financial contracts. The underlying protocol says to be Turing-complete which would theoretically allow any type contract to be designed for transaction or application. Author claims to have this protocol open ended so that people can use it for developing non financial applications as well (Buterin, V. ,2014). With all this said, it seems that the pricing of Ethereum is not only based on economic factors, but also based on variety of other factors including creation of smart contracts, developing new decentralized applications. Thus making it very novel in itself.
+
+Talking about the research carried out in this domain, it mostly carried on Bitcoin which is the leading cryptocurrency. Few researchers have carried out the research on the social media sentiment and popularity of the Bitcoin. Number of Reddit posts and the education level of the person were the few parameters considered for their research. They found an interesting fact that the around 60 % of the people were from middle school (Narman, Uulu and Liu, 2018). In another research, 500,000 tweets consisting of altcoins over a period of 71 days were analyzed to predict the short term returns using machine learning techniques such as linear regression (Steinert and Herff, 2018).
+
+One of the researcher applied GARCH model on Bitcoin, Gold and US Dollar to compare its results in a portfolio management. She found out that the portfolio consisting with bitcoin yeilded more profits thus suggesting the inclusion of cryptocurrency in the portfolio (Dyhrberg, 2016). But this research was carried out when the Bitcoin prices were at its paramount. Thus their claim of suggesting Bitcoin inclusion for risk averse useres stands questioned.
+
+In one of the papers, authors fitted twelve GARCH models to the seven most popular cryptocurrencies at that time. Their research concluded that IGARCH and GJRGARCH models were best fit for forecasting the volatility of majority of these cryptocurrencies. They suggested that the this asset is good for the individuals who can afford taking risk. Their research uncovered an important facts that  for some cryptocurrencies, IGARCH(1,1) model was best fit where as for other GJRGARCH(1,1) was best fit where as forRipple GARCH(1,1) was best fit (Chu et al., 2017). This also suggests that the prices and volatility of the underlying cryptocurrencies vary. Due to data constraints, they did not consider Ethereum for this research thus invoking curiosity about the same for our research paper.
+--------------------------------------------------------
+One of the authors used GARCH variations for fitting the Bitcoin prices and found that AR-CGARCH had the optimal fit. They have included long-run as well as short run component of conditional variance to obtain the results (Katsiampa, P., 2017). hey measured the results based on Akaike information criterion (AIC) and Bayesian information criterion (BIC).Outcome of this research was similar to that done by Bouoiyour and Selmi (2016).
+
+In another research, authors performed an econometric analysis on the Cryptocurrency Index. They found that TGARCH(1,1) was best fit with respect ot the AIC, BIC and log likelihood. They also compared it with traditional ARIMA Models (Chen et al. , 2016).
+
+Using the Artifical Neural Network (ANN) for doing analysis on time series data for forecasting has been in use since decades. One of the early spotting of use of ANN to was to predict stock returns of IBM. Although, the results of early studies were not that great, but it provided researchers with foundation to build upon (White, H., 1988). 
+
+
+
+ 
+
+cryptocurrency
+Hybrid models
+Ethereum
+
+
+1) State of the art in Bitcoin ()
+2) State of the art in Ethereum
+3) State of the art in ANN and GARCH.
+==========================================================
+Methodology:
+
+This research will follow the CRISP-DM (CRoss Industry Standard Process for Data Mining)  methodology to ensure the consistency of the research (Wirth, R. and Hipp, J., 2000).
+
+<<<<Place CRISP-DM IMAGE HERE> cross-industry process for data mining>>>
+
+1) Business Understanding
+As we have already covered the uniqueness of Ethereum in the above sections, predicting its prices and volatility is major challenge. There are lot many factors which may affect the pricing. Also, there is very little work in place to forecast this asset class. This paper will focus on forecasting the price volatility of Ethereum by using historical data of its stock price.
+
+2) Data Understanding
+To move ahead with the research, data is fetched from Quandl. Closing prices of Ethereum with frequency as daily will be considered. This data will be obtained from BTIFinex Exchange(Quandl.com, 2019). Quandl code for the same is "BITFINEX/ETHUSD". Data from 14th March 2016 to 28th February 2019 will be used for this research.
+
+This data will be fetched in R. Plot will be generated to understand the data. By looking at the plots we might understand the volatility of the data and general trend. It may help in answering few questions like how often are the sudden spikes in the whole dataset, Is there any pattern which is followed by the data.
+
+3) Data Preparation
+Before preparing the data, we might need to run few tests on the data set. Augmented Dickey-Fuller test  (Fuller, W.A., 2009) will be run on the dataset to test for the stationarity with respect to the level of confidence. Along with this Jarque-Bera test for checking the normality will be used to identify the skewness in the data if any.
+Data will then be scaled to its logarithmic value so as to fit it for ANN.
+After this the data will be decomposed to find the stationarity and seasonality. Once identified, the next step will be run the auto.arima() function to find the p, d, q co-ordinates for the timeseries. These p, d, q will then be passed to the Engle's LM test for ARCH to check for the presence of Heteroskedasticity in the data (Engle, 1982). Once this test is done , rejecting the null hypothesis will prove the presence of heteroscedasticity in the dataset. If non linearity is detected, then ANN proves to be appropriate method.
+
+4) Modeling
+
+<<<<Place MODEL IMAGE HERE>>>>
+
+Engle (1982) put forth the model by taking into consideration, the heteroscedasticity of timeseries data with the ARCH model and the generalization of ARCH model. These models are described by the following equations, 
+
+<<<PUT EQUATIONS 1>>>
+
+where k it autoregressive order of the mean of the equation, p is order of the lagged squared error and q is the order for the lagged variance (Engle, 1982). 
+
+Next GARCH model that will be used is APGARCH (  Asymmetric Power General Autoregressive Conditional Heteroskedasticity) model. Power term d is included in the original GARCH model to keep check on the variance in the Eq. (2c). It allows linear relationship thus making itself as a stochastic volatility model with standard deviation d = 1.
+<<<PUT EQUATIONS 2>>>
+
+As few researches have shown that EGARCH model is also noteworthy in volatility prediction of timeseries data, thus EGARCH model is described by the equations below.
+
+<<<PUT EQUATIONS 3>>>
+
+Artificial Neural Network is considered as one of the major machine learning technique in doing analysis on the financial data. Multi-Layer Perceptron(MLP) is feedforward artificial neural network. It has at least 3 layers, viz. input, output and hidden layer in between. It uses nonlinear activation function to classify the data which is non linear in nature. MLP may have multiple layers. Total number of layers are denoted by L, whereas total number of neurons per layer are denoted by N and I denotes the total  number of input of the network. Thus MLP is mathematically denoted by:(Rumelhart, Hinton and Williams, 1986)
+
+5) Evaluation
+Mean Square Error (MSE) is used to find the error in the actual and the forecasted values. It is chosen because of its robust nature. Also, Model Confidence Set test (MCS) is used to check for the p-values of the tests for each model. To further sure, we use student's t-distribution test to check statistical significant testing. Along with this General Error Distribution test is used to check for the distribution of error which can be used as a statistically significant measure.
+
+The configurations used for the network were 1,2,3 and 4 hidden layers and 5, 10, 15 and 20 neurons
+==========================================================
+Results:
+In one of the papers, GARCH, EGARCH and APGARCH models were used. Order of k, p and q were set changed from 0 to 2 with each iteration. The sliding window sizes were kept as 63 days, 126 days, 189 days, 252 days and 278 days. Thus the total number of models formed were 120. Model with EGARCH and sliding windows over 252 days appeared to be best amongst all. Similar kind of result is expected in this research for Ethereum. Mean Squared Error (MSE) is used to identify the best model (Kristjanpoller and Minutolo, 2018). It was also identified that the term period and MSE are inversely proportional. After collinearity test with the traditional indicators, M12, S-RSI and BUB were considered to compare the indicators. 
+After identifying the 12 best forecasting models, these were then fed to the ANN. Where each time the configurations used were changed from 1,2,3 and 4 hidden layers to 5, 10, 15 and 20 neurons with the sliding window of 252 days. With 1 hidden layer and 10 neurons, the mean squared error was reduced by 3.32%. Interestingly when the number of neurons were increased to 5 and 44 days were the sliding window the MSE reduced by 4.53%. It was found that the best hybrid model with the MSE reduced by 4.99% was the one with 2 layers, 5 neurons. The best hybrid model for the similar kind of research was the one with few layers and few neurons. Similar kind of results are expected in this research paper. 
+
+
+==========================================================
+Conclusion and future work:
+==========================================================
+References:
+
+Bhattacharjee, S., 2016. A statistical analysis of  bitcoin transactions during 2012 to 2013 in terms of  premier currencies: Dollar, Euro and Rubles. Vidwat,  9(1), p.8.
+
+Bouoiyour, J. and Selmi, R., 2016. Bitcoin: A beginning of a new phase. Economics Bulletin, 36(3), pp.1430-1440.
+
+Brière, M., Oosterlinck, K. and Szafarz, A. (2015). Virtual currency, tangible return: Portfolio diversification with bitcoin. Journal of Asset Management, 16(6), pp.365-373.
+
+Buterin, V., 2014. A next-generation smart contract and decentralized application platform. white paper.
+
+Chen, S., Chen, C., Härdle, W.K., Lee, T.M. and Ong, B., 2016. A first econometric analysis of the CRIX family. Available at SSRN 2832099.
+
+Chu, J., Chan, S., Nadarajah, S. and Osterrieder, J. (2017). GARCH Modelling of Cryptocurrencies. Journal of Risk and Financial Management, 10(4), p.17.
+
+
+
+CoinMarketCap. (2019). Cryptocurrency Market Capitalizations | CoinMarketCap. [online] Available at: https://coinmarketcap.com/ [Accessed 13 Apr. 2019].
+
+Ju, L., Lu, T. and Tu, Z. (2015). Capital Flight and Bitcoin Regulation. International Review of Finance, 16(3), pp.445-455.
+
+CoinLore. (2019). List of All Cryptocurrencies | CoinLore. [online] Available at: https://www.coinlore.com/all_coins [Accessed 13 Apr. 2019].
+
+Dumitrescu, G.C., 2017. Bitcoin–a brief analysis of the advantages and disadvantages. Global Economic Observer, 5(2), pp.63-71.
+
+Dyhrberg, A. (2016). Bitcoin, gold and the dollar – A GARCH volatility analysis. Finance Research Letters, 16, pp.85-92.
+
+Engle, R.F., 1982. Autoregressive conditional heteroscedasticity with estimates of the variance of United Kingdom inflation. Econometrica: Journal of the Econometric Society, pp.987-1007.
+
+
+Fuller, W.A., 2009. Introduction to statistical time series (Vol. 428). John Wiley & Sons.
+
+
+Katsiampa, P., 2017. Volatility estimation for Bitcoin: A comparison of GARCH models. Economics Letters, 158, pp.3-6.
+
+Kristjanpoller, W. and Minutolo, M. (2018). A hybrid volatility forecasting framework integrating GARCH, artificial neural network, technical analysis and principal components analysis. Expert Systems with Applications, 109, pp.1-11.
+
+Narman, H., Uulu, A. and Liu, J. (2018). Profile Analysis for Cryptocurrency in Social Media. 2018 IEEE International Symposium on Signal Processing and Information Technology (ISSPIT).
+
+Pichl, L. and Kaizoji, T. (2017). Volatility Analysis of Bitcoin Price Time Series. Quantitative Finance and Economics, 1(4), pp.474-485.
+
+Quandl.com. (2019). Quandl. [online] Available at: https://www.quandl.com/data/BITFINEX/ETHUSD-ETH-USD-Exchange-Rate [Accessed 14 Apr. 2019].
+
+Steinert, L. and Herff, C. (2018). Predicting altcoin returns using social media. PLOS ONE, 13(12), p.e0208119.
+
+Böhme, R., Christin, N., Edelman, B. and Moore, T. (2015). Bitcoin: Economics, Technology, and Governance. Journal of Economic Perspectives, 29(2), pp.213-238.
+
+Wang, X., Wu, H., Sun, W. and Zhao, Y. (2019). Towards Generating Cost-Effective Test-Suite for Ethereum Smart Contract. 2019 IEEE 26th International Conference on Software Analysis, Evolution and Reengineering (SANER).
+
+White, H., 1988. Economic prediction using neural networks: The case of IBM daily stock returns.
+
+Wirth, R. and Hipp, J., 2000, April. CRISP-DM: Towards a standard process model for data mining. In Proceedings of the 4th international conference on the practical applications of knowledge discovery and data mining (pp. 29-39). Citeseer.
+
+Kryzanowski, L., Galler, M. and Wright, D. (1993). Using Artificial Neural Networks to Pick Stocks. Financial Analysts Journal, 49(4), pp.21-27.
+
+Roh, T.H., 2007. Forecasting the volatility of stock price index. Expert Systems with Applications, 33(4), pp.916-922.
+
+Tseng, C.H., Cheng, S.T., Wang, Y.H. and Peng, J.T., 2008. Artificial neural network model of the hybrid EGARCH volatility of the Taiwan stock index option prices. Physica A: Statistical Mechanics and its Applications, 387(13), pp.3192-3200.
+
+Bildirici, M. and Ersin, Ö.Ö., 2009. Improving forecasts of GARCH family models with the artificial neural networks: An application to the daily returns in Istanbul Stock Exchange. Expert Systems with Applications, 36(4), pp.7355-7362.
+
+Rumelhart, D., Hinton, G. and Williams, R. (1986). Learning representations by back-propagating errors. Nature, 323(6088), pp.533-536.
+
+Burnham, K. and Anderson, D. (2004). Multimodel Inference. Sociological Methods & Research, 33(2), pp.261-304.
+
+Mallqui, D. and Fernandes, R. (2019). Predicting the direction, maximum, minimum and closing prices of daily Bitcoin exchange rate using machine learning techniques. Applied Soft Computing, 75, pp.596-606.
+
+Nakano, M., Takahashi, A. and Takahashi, S. (2018). Bitcoin technical trading with artificial neural network. Physica A: Statistical Mechanics and its Applications, 510, pp.587-609.
+==========================================================
+Akaike information criterion
+Bayesian information criterion
+Consistent Akaike Information Criterion (CAIC)
+corrected Akaike Information Criterion
+Hannan–Quinn criterion
+
+Wu, C., Lu, C., Ma, Y. and Lu, R. (2018). A New Forecasting Framework for Bitcoin Price with LSTM. 2018 IEEE International Conference on Data Mining Workshops (ICDMW).
