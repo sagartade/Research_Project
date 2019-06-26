@@ -18,6 +18,11 @@ require(tseries)
 require(ggplot2)
 
 bitcoin = Quandl("BITFINEX/ETHUSD", start_date="2010-01-01", end_date="2019-02-28", type = "ts")
+# Save to R Dataset file
+saveRDS(bitcoin,'./bitcoin.rds')
+
+# Load from R Dataset file
+bitcoin <- readRDS('./bitcoin.rds')
 ## Copying timeseries to new variables to keep original values intact
 tsdata_bit <- bitcoin$Last
 
