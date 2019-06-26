@@ -17,6 +17,18 @@ Drawback: Feed-forward neural networks do offer great capability but still suffe
 3) LSTM
 4) CNN-LSTM
 5) LSTM Multi Step Forecasting
+================================================
+
+TO DO: 
+
+1) Hyper
+2) Mention LSTM not suitable by non peer reviewed source mention in literature review.
+
+3) Use Sliding window 
+4) Structural break
+5) Stacked Generalization
+
+Stacked generalization
 
 
 
