@@ -23,6 +23,9 @@ saveRDS(bitcoin,'./bitcoin.rds')
 
 # Load from R Dataset file
 bitcoin <- readRDS('./bitcoin.rds')
+
+ethvar <- rollapply(bitcoin$last, width = 7, FUN = var, fill = NA)
+
 ## Copying timeseries to new variables to keep original values intact
 tsdata_bit <- bitcoin$Last
 
