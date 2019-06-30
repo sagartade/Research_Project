@@ -27,8 +27,8 @@ TO DO:
 3) Use Sliding window 
 4) Structural break
 5) Stacked Generalization
-
-Stacked generalization
+Rollapply
+USe Variance
 
 
 

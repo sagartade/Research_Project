@@ -12,19 +12,21 @@ install.packages("Quandl")
 library(Quandl)
 library(TTR)
 library(quantmod)
+library(zoo)
 require(smooth)
 require(Mcomp)
 require(tseries) 
 require(ggplot2)
 
 bitcoin = Quandl("BITFINEX/ETHUSD", start_date="2010-01-01", end_date="2019-02-28", type = "ts")
+
 # Save to R Dataset file
 saveRDS(bitcoin,'./bitcoin.rds')
 
 # Load from R Dataset file
 bitcoin <- readRDS('./bitcoin.rds')
 
-ethvar <- rollapply(bitcoin$last, width = 7, FUN = var, fill = NA)
+ethvar <- rollapply(bitcoin$Last, width = 7, FUN = var, fill = NA)
 
 ## Copying timeseries to new variables to keep original values intact
 tsdata_bit <- bitcoin$Last
