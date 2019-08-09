@@ -1,0 +1,56 @@
+
+Title: 
+Can an hybrid of ANN-GARCH model provide a significant improvement in predicting the price volatility of the Ethereum?
+======================================================
+Abstract:
+
+Ethereum the second most popular cryptocurrency next to Bitcoin has a market share of US $18 billion. Due to its huge market shares, Ethereum has gained attention from the investor community. With its unique ability to write smart contracts for blockchain technologies, it is very popular among the application developers community. Even after having a significantly large fan base, there is very little academic research being done on this cryptocurrency. This research paper aim towards finding out if the hybrid model consisting of ANN-GARCH can provide significant improvements in predicting the price volatility of such popular and volatile cryptocurrency. This research intends to contribute to a better understanding of the ability of the GJR-GARCH model to predict volatility with a rolling window approach. These results when fed to the LSTM model for training and closing the gap between the actual and forecasted volatility values of the GARCH model yield interesting results. After, many iterations and tuning of the GARCH and LSTM models, it was observed that the Root Mean Squared Error (RMSE) was significantly less in comparison with standalone GARCH model. When compared the RMSE with standalone LSTM model the difference observed was very insignificant. This paper contains the facts and experiment results obtained during this interesting research. 
+
+
+1) Intro
+2) Problem statement
+3) Contribution
+4) Approach
+5) Results
+
+
+======================================================
+Introduction:
+1) Background
+2) Importance
+3) Research Question
+4) Limitations
+5) Assumptions
+6) Structure of the Report (following sections) "In the next section"
+
+
+======================================================
+Related Work:
+
+
+======================================================
+Methodology
+
+
+
+======================================================
+Design Specification
+
+
+======================================================
+Implementation
+
+
+======================================================
+Evaluation
+
+
+======================================================
+Conclusion and Future Work
+
+
+======================================================
+References
+
+
+======================================================
