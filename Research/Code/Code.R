@@ -8,8 +8,9 @@
 # Name: Sagar Tade
 ################################################################
 
-install.packages("Quandl")
-library(Quandl)
+#install.packages("Quandl")
+library(readxl)
+#library(Quandl)
 library(TTR)
 library(quantmod)
 library(zoo)
@@ -17,103 +18,101 @@ require(smooth)
 require(Mcomp)
 require(tseries) 
 require(ggplot2)
+library(plotly)
+#Ethereum = Quandl("BITFINEX/ETHUSD", start_date="2010-01-01", end_date="2019-02-28", type = "ts")
 
-bitcoin = Quandl("BITFINEX/ETHUSD", start_date="2010-01-01", end_date="2019-02-28", type = "ts")
+#Data taken from Coin base as it had more records than Quandl
+Ethereum <- read_excel("D:/Sagar/Study/Sem3/Research_Thesis/Research_Project/Research/Code/Dataset/Ethereum.xlsx")
 
 # Save to R Dataset file
-saveRDS(bitcoin,'./bitcoin.rds')
+saveRDS(Ethereum,'./ethereum.rds')
 
 # Load from R Dataset file
-bitcoin <- readRDS('./bitcoin.rds')
+Ethereum <- readRDS('./ethereum.rds')
 
-ethvar <- rollapply(bitcoin$Last, width = 7, FUN = var, fill = NA)
+Ethereum <- Ethereum[order(as.Date(Ethereum$Date)),] #Ordered in Ascending dates
 
-## Copying timeseries to new variables to keep original values intact
-tsdata_bit <- bitcoin$Last
+eth <- Ethereum
 
 ##############Exploration on Ethereum ####################
 
+# Plotting Ethereum Prices in Candlestick
+# Reference https://plot.ly/r/candlestick-charts/
+eth_plot <- eth %>%
+  plot_ly(x = ~Date, type="candlestick",
+          open = eth$Open, close = eth$Close,
+          high = eth$High, low = eth$Low) %>%
+  layout(title = "Ethereum Price Chart", xaxis = list(rangeslider = list(visible = F)))
+
+eth_plot
+
+#Transforming prices to log for feeding the model
+a = log(eth$Close)
+log_price <- a
+eth <- cbind(eth, log_price)
+
+# Difference between log prices
+roc <- ROC(eth[,"Close"])
+pct_change <- roc
+eth <- cbind(eth, pct_change)
+
+# Standard Deviation of
+
+library("caTools")
+c <- xts(x=pct_change, order.by = eth$Date)
+b = roll_sd(c, 30, center = F)
+d <- data.frame(date=index(b), coredata(b))
+stdev <- d$coredata.b
+eth <- cbind(eth, stdev)
+
+
+#Rolling Volatility With 30 Time Periods
+Volatility <- volatility(eth[-1], n = 30, calc = "yang.zhang", N = 365)
+
+eth <- cbind(eth, Volatility) #Appending volatility to original dataframe
+plot_ly(x = eth$Date, y = volatility, type = 'scatter', mode = 'lines') %>%
+          layout(title = "Rolling Volatility With 30 Time Periods - Yang Zang Estimator",
+                 xaxis = list(title = "Index"),
+                 yaxis = list (title = "Volatility"))
+
+
+
 # Check for stationarity using ADF and KPSS tests
-adf.test(tsdata_bit)
+adf.test(na.omit(volatility))
+kpss.test(na.omit(volatility), null="Trend")
 
-kpss.test(tsdata_bit, null="Trend")
-
-decomp_bit <- decompose(ts(na.omit(tsdata_bit), frequency=30))
-plot(decomp_bit)
-plot(tsdata_bit)
-
-# 
-# # Plot the time series data
-# autoplot(tsdata_bit, geom = "line") + xlab("Date")+ylab("Megalitres")
-# 
-# # Find and plot the trend
-# tsdata_bit_trend <- ma(tsdata_bit, order = 4, centre = T)
-# autoplot(tsdata_bit_trend, geom = "line") + xlab("Date")+ylab("Megalitres")
-# 
-# tsdata_bit_trend2 <- sma(tsdata_bit, n = 4)
-# plot(forecast(tsdata_bit_trend2))
-# 
-# 
-# # Remove the trend and plot the detrended series
-# tsdata_bit_detrended <- tsdata_bit - tsdata_bit_trend
-# autoplot(tsdata_bit_detrended, geom = "line") + xlab("Date")+ylab("Megalitres")
-# 
-# 
-# # Determine and plot the average seasonality
-# tsdata_bit_avg = t(matrix(data = tsdata_bit_detrended, nrow = 4))
-# tsdata_bit_seasonal = colMeans(tsdata_bit_avg, na.rm = T)
-# autoplot(as.ts(rep(tsdata_bit_seasonal,16)), geom = "line") + xlab("Date") + ylab("Megalitres")
-# 
-# # Remove the average seasonality and plot the stochastic series
-# tsdata_bit_stochastic <- tsdata_bit_detrended - tsdata_bit_seasonal
-# autoplot(tsdata_bit_stochastic, geom = "line") + xlab("Date")+ylab("Megalitres")
-# 
-# 
-# # Plot the Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) of the original series
-# # and stochastic series
-# acf(tsdata_bit)
-# pacf(tsdata_bit)
-# #acf(tsdata_stochastic)
-# acf(na.remove(tsdata_bit_stochastic))
-# #pacf(tsdata_stochastic)
-# pacf(na.remove(tsdata_bit_stochastic))
-# 
-# 
-# #Attempt to set the model order automatically and print the order of the model
-# ar.model_bit <- auto.arima(tsdata_bit)
-# arimaorder(ar.model_bit)
-# # > arimaorder(ar.model)
-# # p         d         q         P         D         Q Frequency 
-# # 1         0         2         0         1         1         4 
-# 
-# 
-# # Forecast 8 steps ahead and print/plot the forecast
-# fcast <- forecast(ar.model_bit, h = 8)
-# print(fcast)
-# plot(fcast)
-# 
-################ Test for checking ARCH ###
+# Test for checking ARCH ###
 library(fDMA)
-archtest(ts=tsdata_bit)
+archtest(ts=volatility)
 
-library(rugarch)
-##Modeling
-garch_one_zero <- ugarchspec(variance.model = list(model="sGARCH", garchOrder=c(1,0)),distribution.model = "norm")
-garch_one_one <- ugarchspec(variance.model = list(model="sGARCH", garchOrder=c(1,1)),distribution.model = "norm")
-gjrgarch_one_zero <- ugarchspec(variance.model = list(model="gjrGARCH", garchOrder=c(1,0)),distribution.model = "norm")
-gjrgarch_one_one <- ugarchspec(variance.model = list(model="gjrGARCH", garchOrder=c(1,1)),distribution.model = "norm")
-igarch_one_one <- ugarchspec(variance.model = list(model="iGARCH"),distribution.model = "norm")
+# Exporting data to excel
+l <- list(df = eth)
+openxlsx::write.xlsx(l, file = "D:\\Sagar\\Study\\Sem3\\Research_Thesis\\Research_Project\\Research\\Code\\Dataset\\Updated_Ethereum.xlsx")
 
 
-##Applying GARCH MODELS
-garch_bit_one_zero <- ugarchfit(spec=garch_one_zero, data=tsdata_bit)
-garch_bit_one_one <- ugarchfit(spec=garch_one_one, data=tsdata_bit)
-gjrgarch_bit_one_zero <- ugarchfit(spec=gjrgarch_one_zero, data=tsdata_bit)
-gjrgarch_bit_one_one <- ugarchfit(spec=gjrgarch_one_one, data=tsdata_bit)
-igarch_bit_one_one <- ugarchfit(spec=igarch_one_one, data=tsdata_bit)
-  
 
-##FORECASTING
-gjrgarch_bit_one_one_forecast <- ugarchforecast(gjrgarch_bit_one_one, n.ahead = 2, data=tsdata_bit)
 
-plot(gjrgarch_bit_one_one_forecast)
+
+###################### GARCH Modelling on Volatility #########################################
+
+# library(rugarch)
+# ##Modeling
+# garch_one_zero <- ugarchspec(variance.model = list(model="sGARCH", garchOrder=c(1,0)),distribution.model = "norm")
+# garch_one_one <- ugarchspec(variance.model = list(model="sGARCH", garchOrder=c(1,1)),distribution.model = "norm")
+# gjrgarch_one_zero <- ugarchspec(variance.model = list(model="gjrGARCH", garchOrder=c(1,0)),distribution.model = "norm")
+# gjrgarch_one_one <- ugarchspec(variance.model = list(model="gjrGARCH", garchOrder=c(1,1)),distribution.model = "norm")
+# igarch_one_one <- ugarchspec(variance.model = list(model="iGARCH"),distribution.model = "norm")
+# 
+# 
+# ##Applying GARCH MODELS
+# garch_bit_one_zero <- ugarchfit(spec=garch_one_zero, data=tsdata_bit)
+# garch_bit_one_one <- ugarchfit(spec=garch_one_one, data=tsdata_bit)
+# gjrgarch_bit_one_zero <- ugarchfit(spec=gjrgarch_one_zero, data=tsdata_bit)
+# gjrgarch_bit_one_one <- ugarchfit(spec=gjrgarch_one_one, data=tsdata_bit)
+# igarch_bit_one_one <- ugarchfit(spec=igarch_one_one, data=tsdata_bit)
+#   
+# 
+# ##FORECASTING
+# gjrgarch_bit_one_one_forecast <- ugarchforecast(gjrgarch_bit_one_one, n.ahead = 2, data=tsdata_bit)
+
+# plot(gjrgarch_bit_one_one_forecast)

@@ -30,6 +30,17 @@ TO DO:
 Rollapply
 USe Variance
 
+Useful Links:
+
+1) https://www.sciencedirect.com/science/article/pii/S0165176517302501
+2) file:///D:/Sagar/Study/Sem3/Research%20Thesis/Research_Project/Research/Papers/katsiampa2017.pdf
+3) https://sci-hub.tw/10.1016/j.econlet.2017.06.023
+4) https://moodle.ncirl.ie/pluginfile.php/342618/mod_resource/content/0/Lecture%208%20-%20H9FINA%20-%20Volatility.pdf
+5) https://www.statmethods.net/graphs/density.html
+6) https://machinelearningmastery.com/implementing-stacking-scratch-python/
+7) Stacked generalization IMP https://www.google.com/search?q=stack+generalization&rlz=1C1OKWM_enIN808IN808&oq=stack+gene&aqs=chrome.2.0j69i57j0l4.4501j0j7&sourceid=chrome&ie=UTF-8
+8) 
+
 
 
 
