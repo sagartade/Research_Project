@@ -1,6 +1,6 @@
 
 Title: 
-Can an hybrid of ANN-GARCH model provide a significant improvement in predicting the price volatility of the Ethereum?
+Can a hybrid of ANN-GARCH model provide a significant improvement in predicting the price volatility of the Ethereum?
 ======================================================
 Abstract:
 
@@ -9,7 +9,20 @@ Ethereum the second most popular cryptocurrency next to Bitcoin has a market sha
 ======================================================
 Introduction:
 
-Cryptocurrencies have started gaining huge popularity after the 2008 crisis. With more than US $180 billion being invested in the cryptocurrency markets it is becoming one of the major asset class. <<References 1>> Increase in the popularity has attracted every individuals attention towards cryptocurrency market. Stories of people becoming millionaires over night are hyping up the interest of the investors and common people. Very high volatile and unregulated market of cryptocurrencies have enabled people in gaining huge profits in the recent years. On the other hand billions of dollars were lost due to same characteristics causing huge risks on the investors and fund managers creating a chaos. Thus various academicians are trying to solve the problem of predicting the volatility of such cryptocurrencies. Majority of the study is done across one cryptocurrency which is Bitcoin. Origin of Bitcoin was aimed towards overcoming the shortfalls and opaque systems of the traditional banking institutions. Underlying technology of Bitcoin which was termed as "Blockchain" had trust, privacy, transparency and integrity into it with the use of advance maths and technology. Thus the underlying technology of Bitcoin was a great inspiration for other cryptocurrencies and Ethereum in particular.
+Cryptocurrencies have started gaining huge popularity after the 2008 crisis. With more than US $180 billion being invested in the cryptocurrency markets it is becoming one of the major asset class. <<References 1>> Increase in popularity has attracted every individual's attention towards the cryptocurrency market. Stories of people becoming millionaires overnight are hyping up the interest of the investors and common people. The very high volatile and unregulated market of cryptocurrencies has enabled people in gaining huge profits in recent years. On the other hand, billions of dollars were lost due to the same characteristics causing huge risks to the investors and fund managers creating chaos. Thus various academicians and professionals are trying to solve the problem of predicting the volatility of such cryptocurrencies. Majority of the study is done across one cryptocurrency which is Bitcoin. Origin of Bitcoin was aimed towards overcoming the shortfalls and opaque systems of the traditional banking institutions. The underlying technology of Bitcoin which was termed as "Blockchain" had trust, privacy, transparency and integrity into it by design with the use of advanced maths and technology. Thus the underlying technology of Bitcoin was a great inspiration for other cryptocurrencies and Ethereum in particular.
+
+Ethereum which is the second popular and second most traded cryptocurrency has a capitalization of US $18 billion. With similar underlying technology of blockchain, Ethereum is also used for developing applications based on blockchain technologies. Ethers can be traded for the computation power required to solve a complex math problem for verifying the result. Thus making it unique in itself. One can create its own blockchain application based on Ethereum blockchain thus allowing it to execute applications and transacting the payments. Keeping this unique feature of Ethereum in mind, it was necessary to have research with regards to the prediction of the volatility of this cryptocurrency. Hybridized model of Artificial Neural Network (ANN) and Generalized Autoregressive Conditional Heteroskedasticity (GARCH) was thought of to be best suited for this research. The ability of GARCH models to estimate the volatility of an asset is the central idea of using it. Whereas, ANN is used to detect and minimize the nonlinear effects of volatility. <<References 2>>
+
+This led to the proposal of the research question of:
+"Can a hybrid of ANN-GARCH model provide a significant improvement in predicting the price volatility of the Ethereum?" To answer this question, the following milestones were set as objectives.
+
+1) To statistically validate if the Ethereum time series is competent for the use of a proposed hybrid model.
+2) To implement a rolling window approach in predicting the volatility by using GARCH and ANN.
+3) To compare the hybrid results with the traditional systems and highlight its significance.
+
+This research is done only on the basis of historical time series data without any consideration of external factors or news or change in governing policies by any influential countries. Any of the above-mentioned factors may imply in a sudden change of prices and volatilities which may be the limitation of this research. It is assumed that the current state of cryptocurrencies continue in the future as they are now. Moving forward with these assumptions, the next section of the report will include a brief review of the literature in the area of cryptocurrencies, volatility predictions using hybrid models and state of the art in the Ethereum price prediction. The proposed methodology to achieve the answers to the questions listed will be discussed after the review based on the literature. Next sections of this research paper will focus in detail on the implementation part following which will be a detailed discussion of the results obtained and how are they interpreted. Thus concluding this research and highlighting the possible future work which can add more value to the current research.
+
+
 
 1) Background
 2) Importance
@@ -51,5 +64,10 @@ References
 Capitalizations | CoinMarketCap. [online] Available at:
 https://coinmarketcap.com/ [Accessed 13 Apr. 2019].
 
-2) 
+2) Kristjanpoller, W. and Minutolo, M. (2018). A hybrid volatility
+forecasting framework integrating GARCH, artificial neural
+network, technical analysis and principal components analysis.
+Expert Systems with Applications, 109, pp.1-11.
+
+3) 
 ======================================================
