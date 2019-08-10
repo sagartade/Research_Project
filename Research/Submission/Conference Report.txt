@@ -20,6 +20,8 @@ This led to the proposal of the research question of:
 2) To implement a rolling window approach in predicting the volatility by using GARCH and ANN.
 3) To compare the hybrid results with the traditional systems and highlight its significance.
 
+<<Image1 Ethereum Price Chart>>
+
 This research is done only on the basis of historical time series data without any consideration of external factors or news or change in governing policies by any influential countries. Any of the above-mentioned factors may imply in a sudden change of prices and volatilities which may be the limitation of this research. It is assumed that the current state of cryptocurrencies continue in the future as they are now. Moving forward with these assumptions, the next section of the report will include a brief review of the literature in the area of cryptocurrencies, volatility predictions using hybrid models and state of the art in the Ethereum price prediction. The proposed methodology to achieve the answers to the questions listed will be discussed after the review based on the literature. Next sections of this research paper will focus in detail on the implementation part following which will be a detailed discussion of the results obtained and how are they interpreted. Thus concluding this research and highlighting the possible future work which can add more value to the current research.
 
 
@@ -35,9 +37,28 @@ This research is done only on the basis of historical time series data without a
 ======================================================
 Related Work:
 
+Interestingly a non peer reviewed source suggested that the use of LSTM on financial time series 
 
 ======================================================
 Methodology
+
+This research follows the CRoss Industry Standard Process for Data Mining which is known as CRISP-DM. It is an industry standard which helps to follow a particular order to achieve the project outcome in data analytics field systematically without missing or skipping any steps. <<References 3>>
+
+1) Business Understanding:
+
+As discussed in the above sections, Ethereum is a unique cryptocurrency in itself. Predicting its prices and volatility is a major challenge in the current time. As there is significantly little work done in predicting its prices it shall be very useful for the investors. Academicians could also know the effects of using a hybrid model for predictions of such highly volatile asset class and know if it is efficient as compared to the traditional data modeling techniques.
+
+2) Data Understanding:
+
+Time series dataset of Ethereum prices is used. This data is scraped from the CoinMarketCap. <<References 1>> Data was available from 07th August 2015. For this particular research last date considered was 27th July 2019. It consists of 1451 observations and 5 attributes namely Date, Open, High, Low, Close. Frequency of this data is daily. Prices mentioned are across US Dollars. Below is the decomposition summary image of the closing prices of Ethereum which is used for this research. It consists of observed, trend, seasonality and randomness in the time series. It suggests the time series had a upward trend till early 2018, thereafter its a declining trend. The randomness during the same time period is very high in this time series indicating sudden changes in he volatility. It also suggests that the time series does not follow any uniform trend and seasonality with it.
+
+<<Image2 Decomposition>>
+
+3) Data Preparation:
+
+It is vital step of this research. As the data obtained is scraped from online source <<References 1>>, it is raw data. So the next step is to convert this data into time series format for further use. Closing prices of this time series were then selected. New column is then added to this time series. This new column have the calculated log values of the closing prices. Log values are fed to the models for training the model. Next column which is added to this time series have difference between current and previous log price. This step was essential for deriving the standard deviation of the corresponding price. As sliding window approach is adopted for this research, it is necessary to calculate the standard deviation of these lagged log values. Rolling window of 30 observations is decided for this research. Hence the next column which is being added to the time series is of the rolling windowed standard deviations of the previous 30 observation. 
+
+4) Modeling:
 
 
 
@@ -60,14 +81,11 @@ Conclusion and Future Work
 ======================================================
 References
 
-1) CoinMarketCap. (2019). Cryptocurrency Market
-Capitalizations | CoinMarketCap. [online] Available at:
-https://coinmarketcap.com/ [Accessed 13 Apr. 2019].
+1) CoinMarketCap. (2019). Cryptocurrency Market Capitalizations | CoinMarketCap. [online] Available at: https://coinmarketcap.com/ [Accessed 13 Apr. 2019].
 
-2) Kristjanpoller, W. and Minutolo, M. (2018). A hybrid volatility
-forecasting framework integrating GARCH, artificial neural
-network, technical analysis and principal components analysis.
-Expert Systems with Applications, 109, pp.1-11.
+2) Kristjanpoller, W. and Minutolo, M. (2018). A hybrid volatility forecasting framework integrating GARCH, artificial neural network, technical analysis and principal components analysis. Expert Systems with Applications, 109, pp.1-11.
 
-3) 
+3) Wirth, R. and Hipp, J., 2000, April. CRISP-DM: Towards a standard process model for data mining. In Proceedings of the 4th international conference on the practical applications of knowledge discovery and data mining (pp. 29-39). Citeseer.
+
+4) 
 ======================================================

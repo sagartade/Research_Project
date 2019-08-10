@@ -19,7 +19,7 @@ require(Mcomp)
 require(tseries) 
 require(ggplot2)
 library(plotly)
-#Ethereum = Quandl("BITFINEX/ETHUSD", start_date="2010-01-01", end_date="2019-02-28", type = "ts")
+#Bitcoin = Quandl("BITFINEX/ETHUSD", start_date="2010-01-01", end_date="2019-07-28", type = "ts")
 
 #Data taken from Coin base as it had more records than Quandl
 Ethereum <- read_excel("D:/Sagar/Study/Sem3/Research_Thesis/Research_Project/Research/Code/Dataset/Ethereum.xlsx")
@@ -45,6 +45,11 @@ eth_plot <- eth %>%
   layout(title = "Ethereum Price Chart", xaxis = list(rangeslider = list(visible = F)))
 
 eth_plot
+
+##Decompose
+tsdata_bit <- eth$Close
+decomp_bit <- decompose(ts(na.omit(tsdata_bit), frequency=30))
+plot(decomp_bit)
 
 #Transforming prices to log for feeding the model
 a = log(eth$Close)
