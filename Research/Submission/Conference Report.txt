@@ -56,7 +56,7 @@ Time series dataset of Ethereum prices is used. This data is scraped from the Co
 
 3) Data Preparation:
 
-It is vital step of this research. As the data obtained is scraped from online source <<References 1>>, it is raw data. So the next step is to convert this data into time series format for further use. Closing prices of this time series were then selected. New column is then added to this time series. This new column have the calculated log values of the closing prices. Log values are fed to the models for training the model. Next column which is added to this time series have difference between current and previous log price. This step was essential for deriving the standard deviation of the corresponding price. As sliding window approach is adopted for this research, it is necessary to calculate the standard deviation of these lagged log values. Rolling window of 30 observations is decided for this research. Hence the next column which is being added to the time series is of the rolling windowed standard deviations of the previous 30 observation. 
+It is vital step of this research. As the data obtained is scraped from online source <<References 1>>, it is raw data. So the next step is to convert this data into time series format for further use. Closing prices of this time series were then selected. New column is then added to this time series. This new column have the calculated log values of the closing prices. Log values are fed to the models for training the model. Next column which is added to this time series have difference between current and previous log price. This step was essential for deriving the standard deviation of the corresponding price. As sliding window approach is adopted for this research, it is necessary to calculate the standard deviation of these lagged log values. Rolling window of 30 observations is decided for this research. Hence the next column which is being added to the time series dataset is of the rolling windowed standard deviations of the previous 30 observation. The final strep in the data preparation is to calculate the volatility of the closing prices. Yang-Zang estimator for calculating volatility is used as it takes care of the jumps and the drifts in the time series. <<Reference 4>>
 
 4) Modeling:
 
@@ -87,5 +87,5 @@ References
 
 3) Wirth, R. and Hipp, J., 2000, April. CRISP-DM: Towards a standard process model for data mining. In Proceedings of the 4th international conference on the practical applications of knowledge discovery and data mining (pp. 29-39). Citeseer.
 
-4) 
+4) Yang Zang Estimator
 ======================================================
