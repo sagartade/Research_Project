@@ -94,7 +94,7 @@ df = df.dropna()
 # In[10]:
 
 
-vol = df["Volatility"] * 100
+vol = df["Volatility"] #* 100
 
 # $$\sigma^2(t) = \alpha \times \sigma^2(t-1) + \beta \times e^2(t-1) + w$$
 
@@ -135,7 +135,7 @@ df1['test'] = res1.resid
 df1.loc[df1['test'] < 0, 'I'] = 1
 df1["I"] = df1["I"].fillna(0)
 
-df['forecast_vol'] = 0.1 * np.sqrt(res1.params['omega'] + res1.params['alpha[1]'] * res1.resid**2 + res1.params['gamma[1]'] * res1.resid**2 * df1['I'] + res1.conditional_volatility**2 * res1.params['beta[1]'] )
+df['forecast_vol'] = np.sqrt(res1.params['omega'] + res1.params['alpha[1]'] * res1.resid**2 + res1.params['gamma[1]'] * res1.resid**2 * df1['I'] + res1.conditional_volatility**2 * res1.params['beta[1]'] ) ## Scaled from 0.1 to 0.01 when *3 then rmse minimum 0.49788 else 0.619080
 
 # After fitting the GARCH(1,1) model, by the formula above, it is possible to forecast rolling volatility. The last 10 rows of the final form of the data is displayed below.
 
@@ -159,14 +159,14 @@ plt.legend()
 plt.show()
 
 
-# In order to measure the performance of the model, __Root Mean Squared Error__ is used and the output of this measure for the last 1000 observations is shown below.
+# In order to measure the performance of the model, __Root Mean Squared Error__ is used and the output of this measure for the last 300 observations is shown below.
 # $$\sum{\sqrt{(\hat{X_i}-X_i)^2}}$$
 
 # In[16]:
 
 
 def rmse_tr(predictions, targets): return np.sqrt(((predictions - targets) ** 2).mean())
-skor = rmse_tr(df.loc[df.index[1000:], 'forecast_vol'], df.loc[df.index[1000:], 'Volatility'])
+skor = rmse_tr(df.loc[df.index[300:], 'forecast_vol'], df.loc[df.index[300:], 'Volatility'])
 #skor11 = rmse_tr(df.loc[df.index[1000:], 'forecast_vol_gjr'], df.loc[df.index[1000:], 'Volatility'])
 print("Root Mean Squared Error of the GARCH(1,1) model is calculated as ",skor)
 #print("Root Mean Squared Error of the GJR-GARCH(1,1) model is calculated as ",skor11)
@@ -188,11 +188,12 @@ df.shape
 
 
 training_set = df.iloc[:, 10:11].values
-# 100 timestep ve 1 çıktı ile data yapısı oluşturalım
+# Create a data structure with 100 timestep and 1 output
 X_train = []
 y_train = []
-for i in range(1000, df.shape[0]):X_train.append(training_set[i-1000:i,0])
-for i in range(1000, df.shape[0]):y_train.append(training_set[i,0])
+for i in range(300, df.shape[0]):
+    X_train.append(training_set[i-300:i,0])
+    y_train.append(training_set[i,0])
 X_train, y_train = np.array(X_train), np.array(y_train)
 
 
@@ -268,7 +269,7 @@ predicted_stock_price = regressor.predict(X_train)
 
 # Visualising the results
 plt.figure(figsize=(18,6))
-plt.plot(df.iloc[1000:, 10:11].values, color = 'red', label = 'Observed Volatility')
+plt.plot(df.iloc[300:, 10:11].values, color = 'red', label = 'Observed Volatility')
 plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Volatility By LSTM')
 plt.title('Real Rolling Volatility vs Forecast of LSTM')
 plt.xlabel('Time')
@@ -285,7 +286,7 @@ plt.show()
 # In[42]:
 
 
-skor2 = rmse_tr(predicted_stock_price, np.array(df.loc[df.index[1000:], 'Volatility']))
+skor2 = rmse_tr(predicted_stock_price, np.array(df.loc[df.index[300:], 'Volatility']))
 print("Root Mean Squared Error of the model is calculated as ",skor2)
 
 
@@ -293,15 +294,14 @@ print("Root Mean Squared Error of the model is calculated as ",skor2)
 
 # In[31]:
 
-
 training_set = df.iloc[:, 10:12].values
-# 100 timestep ve 1 çıktı ile data yapısı oluşturalım
+# Create a data structure with 100 timestep and 1 output
 X_train = []
 y_train = []
-for i in range(1000, df.shape[0]):X_train.append(training_set[i-1000:i,:])
-for i in range(1000, df.shape[0]):y_train.append(training_set[i,0])
+for i in range(300, df.shape[0]):
+    X_train.append(training_set[i-300:i,:])
+    y_train.append(training_set[i,0])
 X_train, y_train = np.array(X_train), np.array(y_train)
-
 
 # In[32]: ###Remaining after this
 
@@ -365,9 +365,9 @@ predicted_stock_price = regressor.predict(X_train)
 
 # Visualising the results
 plt.figure(figsize=(18,6))
-plt.plot(df.iloc[1000:, 10:11].values, color = 'red', label = 'Observed Volatility')
-plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Volatility By LSTM-GARCH(1,1)')
-plt.title('Real Rolling Volatility vs Forecast of LSTM-GARCH(1,1)')
+plt.plot(df.iloc[300:, 10:11].values, color = 'red', label = 'Observed Volatility')
+plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Volatility By LSTM_GJR-GARCH(1,1)')
+plt.title('Real Rolling Volatility vs Forecast of LSTM_GJR-GARCH(1,1)')
 plt.xlabel('Time')
 plt.ylabel('Volatility')
 plt.legend()
@@ -377,7 +377,7 @@ plt.show()
 # In[37]:
 
 
-skor3 = rmse_tr(predicted_stock_price, np.array(df.loc[df.index[1000:], 'Volatility']))
+skor3 = rmse_tr(predicted_stock_price, np.array(df.loc[df.index[300:], 'Volatility']))
 print("Root Mean Squared Error of the model is calculated as ",skor3)
 
 

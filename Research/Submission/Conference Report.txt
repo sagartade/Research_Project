@@ -37,6 +37,11 @@ This research is done only on the basis of historical time series data without a
 ======================================================
 Related Work:
 
+Uniqueness of Ethereum as a cryptocurrency
+
+<<Reference14>>
+
+
 Interestingly a non peer reviewed source suggested that the use of LSTM on financial time series 
 
 ======================================================
@@ -68,21 +73,93 @@ To confirm the trend stationarity exists and support the ADF, Kwiatkowski-Philli
 
 Engle proposed Lagrange Multiplier test which is commonly termed as LM ARCH Test. This test involves fitting of a linear regression model for the squared residuals and then determining whether or not the fitted model is significant <<Reference 7>>. When tested for ARCH presence in Ethereum time series, the null hypothesis stating the absence of ARCH process is rejected. Thus accepting the alternative hypothesis of q degrees of freedom greater than the squared value of X from the distribution and stating the presence of ARCH effect in the time series. The ARCH model is suitable when the time series with error variance follows the autoregressive (AR) model. Similarly, when autoregressive moving average (ARMA) is considered for the error variance, it is then termed as generalized autoregressive conditional heteroskedasticity (GARCH) model. 
 
-After testing for ARCH presence, moving forward is finding the best GARCH model for this time series. There are total of 11 generalized autoregressive conditional heteroskedasticity (GARCH) models. After, thorough analysis of these models, 3 models are shortlisted for this research. They are EGARCH, QGARCH and GJR-GARCH. Details of these models are discussed in the following section of design specification. Next section will also consist of the single shortlisted model which is used for hybridization and the reasons for using that particular model.
+Figure below <<Image3>> shows the architectural design of the proposed research. Two main algorithms used here are GJR-GARCH(1,1) and LSTM.
 
-Second tough choice is to select the appropriate artificial neural network model to reduce the error and train the model. Multilayer perceptron was the first choice. After through research, it was found that recurrent neural network (RNN) models would perform better for this research. Details of which are discussed in the next section.
+<<Image3 Design1>> <<Reference 13>>
 
-======================================================
-Design Specification
+After testing for ARCH presence, moving forward is finding the best GARCH model for this time series. There are total of 11 generalized autoregressive conditional heteroskedasticity (GARCH) models. After, thorough analysis of these models, 3 models are shortlisted for this research. They are EGARCH, QGARCH and GJR-GARCH. Starting with EGARCH model, as GARCH models ignores the sign of the variance thus modeling only magnitude. EGARCH over comes this issue considering negative signs from standard deviation. EGARCH captures the negative shock from the previous time shock t-1 and have a stronger impact for current time t rather than positive shocks. <<Reference 8>> But as the actual time series consists both positive and negative shocks, hence this model was discarded. Second model chosen was QGARCH. Like EGARCH, Quadratic GARCH model can detect the asymmetric positive as well as negative shocks. Addition of the asymmetric term to the vanilla GARCH improved the model significantly. It uses time-varying conditional variances for doing it. <<Reference 9>> According to the paper,<<Reference 10>> GJR-GARCH is the modification of the GARCH-M model. Three main considerations of GJR-GARCH are the seasonal volatility pattern, different impact of positive and negative impact on conditional variance and better prediction of conditional variance. Thus this model is chose for this research as it covers variety of the conditions which a highly volatile time series such as Ethereum can posses. Detail and configuration of this model is discussed in the following section of design specification. 
 
+Second tough choice is to select the appropriate artificial neural network model to reduce the error and train the model. As neural networks does not make any assumptions about the mapping function and promptly learn the linear and nonlinear relations between the data points. Neural networks are also very robust to the error from the input data regardless of the missing values of outliers or sudden changes <<Reference 11>>. By keeping these factors in mind, Multilayer perceptron which is a feed forward type of neural network was sought after. Such kind of neural network are capable in solving most of the classification and non linear types of problems. But, the problems regarding time dependence is its limitation. To overcome this problem, recurrent neural networks (RNN) is a better solution. Among all the RNN's Long Short Term Memory (LSTM) takes into consideration the previous lagged training data and trains the model accordingly. When learning a mapping function, LSTM handles the order from inputs to outputs. Mapping function of LSTM learns to map inputs to outputs over a time period. This capability of LSTM is very useful for this research as volatility of Ethereum is varying widely across the time period t. LSTM thus helps this research by minimizing the error between the predicted volatilities and actual volatilities by using fixed size time windows. <<Reference 12>>
 
 ======================================================
 Implementation
 
+GJR-GARCH(p,q) model is built where value of p=1 and q=1. Scaled volatility values are then passed through this model for fitting. To generate the rolling forecast volatility, alpha, beta, gamma and omega values obtained from the GJR-GARCH model fitting were required. These values were fetched from the summary of the fitting. Next step in implementation is to solve the GJR-GARCH for each available record and obtain its forecasted volatility base on its t-1 lagged value. GJR-GARCH model is denoted by the formula,
+
+\begin {math} 
+~\sigma _{t}^{2}=\omega+~\alpha ~\epsilon _{{t-1}}^{2}+~\beta ~\sigma _{{t-1}}^{2}+~\gamma ~\epsilon _{{t-1}}^{2}I_{{t-1}}
+\end {math}
+
+Where, 
+
+\begin {math}
+~\epsilon _{t}=~\sigma _{t}z_{t}
+\end {math}
+and 
+\begin {math}
+I_{{t-1}}=0
+\end {math}
+
+if,
+\begin {math}
+~\epsilon _{{t-1}}\geq 0
+\end {math}
+
+and 
+\begin {math}
+I_{{t-1}}=1
+\end {math}
+if
+\begin {math}
+~\epsilon _{{t-1}}<0
+\end {math}
+
+Thus forecasted GJR-GARCH values were plotted against the actual values for visual comparison. Below is the figure showing the forecasted volatility across the actual volatility of Ethereum.
+
+<<Image4 GJR-GARCH_Forecast>> 
+
+Next step involved in implementation phase is to create a training data set for LSTM model with 1121 observations, 1 input layer with 1 node and 1 output for it. That model is then fed to the LSTM with 4 layers, 10 nodes per layer and 0.1 dropout for each layer to regularize. 5th layer was the output layer with 1 node. RNN regressor of tensorflow is used for implementation with 100 epochs and 32 batch size. For dataset of 1421 records, 100 epochs seemed to be optimum based on trial and error. Figure below shows the visual representation of the actual vs predicted rolling LSTM volatility. This research is using "Adam" optimizer for stochastic gradient descent thus optimizing "mean squared error" as a loss function.
+
+<<Image5 LSTM_Forecast>>
+
+To reduce the error in the GJR-GARCH model forecasting, its volatility is fed to the LSTM model along with the normal volatility as a input. Hence the model have 2 input layers and 1 output layer while keeping rest of the parameters same. Moving forward to the next section which contains information about the evaluation of the results obtained.
 
 ======================================================
 Evaluation
 
+
+Even though we did not try to build a state of the art LSTM model, yet it is quite impressive, especially on the graphic. However, the graphic might be illusional because we had too many data points in it. That's why we should again measure the goodnes of the model and try to make it better with by combining the garch results.
+
+
+
+
+
+
+
+                   Constant Mean - GJR-GARCH Model Results                    
+==============================================================================
+Dep. Variable:             Volatility   R-squared:                      -0.252
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.252
+Vol Model:                  GJR-GARCH   Log-Likelihood:               -45.8285
+Distribution:                  Normal   AIC:                           101.657
+Method:            Maximum Likelihood   BIC:                           127.953
+                                        No. Observations:                 1421
+Date:                Sun, Aug 11 2019   Df Residuals:                     1416
+Time:                        22:33:58   Df Model:                            5
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu             0.8377  1.104e-02     75.857      0.000 [  0.816,  0.859]
+                               Volatility Model                              
+=============================================================================
+                 coef    std err          t      P>|t|       95.0% Conf. Int.
+-----------------------------------------------------------------------------
+omega      6.4859e-04  2.170e-04      2.989  2.801e-03  [2.233e-04,1.074e-03]
+alpha[1]       1.0000  2.817e-02     35.500 4.973e-276      [  0.945,  1.055]
+gamma[1]   2.8570e-08  4.335e-02  6.590e-07      1.000 [-8.497e-02,8.497e-02]
+beta[1]    2.3871e-15  1.923e-02  1.242e-13      1.000 [-3.769e-02,3.769e-02]
+=============================================================================
 
 ======================================================
 Conclusion and Future Work
@@ -106,4 +183,23 @@ Yang, Dennis, and Qiang Zhang. "Drift-Independent Volatility Estimation Based on
 6) Shin, Yongcheol, and Peter Schmidt. "The KPSS stationarity test as a unit root test." Economics Letters 38, no. 4 (1992): 387-392.
 
 7) Engle, R.F., 1982. Autoregressive conditional heteroscedasticity with estimates of the variance of United Kingdom inflation. Econometrica: Journal of the Econometric Society, pp.987-1007.
+
+8) Inequality Constraints in the Univariate GARCH Model
+
+9) Quadratic ARCH Model, Sentana
+
+10) On the Relation between the Expected Value and the Volatility of the Nominal Excess Return on Stocks
+https://doi.org/10.1111/j.1540-6261.1993.tb05128.x
+
+11) Forecasting of nonlinear time series using ANN
+https://doi.org/10.1016/j.fcij.2017.05.001
+
+12) Applying LSTM to Time Series Predictable through Time-Window Approaches
+https://link.springer.com/chapter/10.1007/3-540-44668-0_93
+
+
+13) https://playground.tensorflow.org/
+
+14) 
+
 ======================================================

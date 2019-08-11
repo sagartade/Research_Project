@@ -97,7 +97,7 @@ l <- list(df = eth)
 openxlsx::write.xlsx(l, file = "D:\\Sagar\\Study\\Sem3\\Research_Thesis\\Research_Project\\Research\\Code\\Dataset\\Updated_Ethereum.xlsx")
 
 
-
+### *Please Note: Run the Python.py code after this which is located in the zip.####
 
 
 ###################### GARCH Modelling on Volatility #########################################
