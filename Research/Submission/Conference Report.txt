@@ -56,11 +56,17 @@ Time series dataset of Ethereum prices is used. This data is scraped from the Co
 
 3) Data Preparation:
 
-It is vital step of this research. As the data obtained is scraped from online source <<References 1>>, it is raw data. So the next step is to convert this data into time series format for further use. Closing prices of this time series were then selected. New column is then added to this time series. This new column have the calculated log values of the closing prices. Log values are fed to the models for training the model. Next column which is added to this time series have difference between current and previous log price. This step was essential for deriving the standard deviation of the corresponding price. As sliding window approach is adopted for this research, it is necessary to calculate the standard deviation of these lagged log values. Rolling window of 30 observations is decided for this research. Hence the next column which is being added to the time series dataset is of the rolling windowed standard deviations of the previous 30 observation. The final strep in the data preparation is to calculate the volatility of the closing prices. Yang-Zang estimator for calculating volatility is used as it takes care of the jumps and the drifts in the time series. <<Reference 4>>
+It is a vital step in this research. As the data obtained is scraped from online source <<References 1>>, it is raw data. So the next step is to convert this data into time series format for further use. Closing prices of this time series were then selected. A new column is then added to this time series. This new column has the calculated log values of the closing prices. Log values are fed to the models for training the model. Next column which is added to this time series has a difference between current and previous log price. This step was essential for deriving the standard deviation of the corresponding price. As the sliding window approach is adopted for this research, it is necessary to calculate the standard deviation of these lagged log values. Sliding window of 30 observations is decided for this research. Hence the next column which is being added to this time series dataset is of the sliding window standard deviations of the previous 30 observation. The final step in the data preparation is to calculate the volatility of the closing prices. Yang-Zhang estimator for calculating volatility is used as it is independent of the jumps and the drifts in the time series and is also has the assumption that the pricing is continuous which is true in case of Ethereum. Its maximum efficiency is 14 times better than that of close to close estimator. <<Reference 4>>
 
 4) Modeling:
 
+Before proceeding towards the modeling few tests are needed to be done on the volatility derived. These tests will give us the clear idea if the data obtained can be used for the statical modeling. In order to run the GARCH Model, following tests were essential.
 
+The first test which is carried out on the Volatility is the Augmented Dickey Fuller (ADF) test. It is used for checking if the series is stationary or not. The null hypothesis for this test is that the series is not stationary and therefore consists of a presence of unit root. Whereas, the alternative hypothesis is that the series exhibits stationarity. The more the negative value higher is the chance of missing unit root. We can only proceed with this time series if is stationary. On applying this test it was found that the value is -4.2248 and the p-value is 0.01 thus rejecting the null hypothesis and stating that the time series may be stationary. <<Reference 5>>
+
+To confirm the trend stationarity exists and support the ADF, Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test is also used. As opposite to the ADF test, null hypothesis of KPSS states that the series is stationary with deterministic mean that is the series is trend stationary against the null hypothesis stating that the different type of stationarity exists in the time series. As the LM statistic is less than the critical value of 0.05 confidence of 0.463 and the p-value is less than 0.01 states that the null hypothesis is accepted and the series is stationary. <<Reference 6>>
+
+Engle proposed Lagrange Multiplier test which is commonly termed as LM ARCH Test. This test involves fitting of a linear regression model for the squared residuals and then determining whether or not the fitted model is significant <<Reference 7>>. In our time series 
 
 ======================================================
 Design Specification
@@ -87,5 +93,13 @@ References
 
 3) Wirth, R. and Hipp, J., 2000, April. CRISP-DM: Towards a standard process model for data mining. In Proceedings of the 4th international conference on the practical applications of knowledge discovery and data mining (pp. 29-39). Citeseer.
 
-4) Yang Zang Estimator
+4) Yang Zang Estimator 
+Yang, Dennis, and Qiang Zhang. "Drift-Independent Volatility Estimation Based on High, Low, Open, and Close Prices." The Journal of Business 73, no. 3 (2000): 477-92. doi:10.1086/209650.
+
+5) Fuller, W.A., 2009. Introduction to statistical time series (Vol.
+428). John Wiley & Sons.
+
+6) Shin, Yongcheol, and Peter Schmidt. "The KPSS stationarity test as a unit root test." Economics Letters 38, no. 4 (1992): 387-392.
+
+7) Engle, R.F., 1982. Autoregressive conditional heteroscedasticity with estimates of the variance of United Kingdom inflation. Econometrica: Journal of the Econometric Society, pp.987-1007.
 ======================================================

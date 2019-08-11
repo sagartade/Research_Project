@@ -5,7 +5,8 @@
 # Description: 
 # Ethereum
 # 
-# Name: Sagar Tade
+# Name: Sagar Anil Tade
+# Student ID: x18109641
 ################################################################
 
 #install.packages("Quandl")
@@ -73,9 +74,10 @@ eth <- cbind(eth, stdev)
 
 #Rolling Volatility With 30 Time Periods
 Volatility <- volatility(eth[-1], n = 30, calc = "yang.zhang", N = 365)
+plot(Volatility, type = 'l')
 
 eth <- cbind(eth, Volatility) #Appending volatility to original dataframe
-plot_ly(x = eth$Date, y = volatility, type = 'scatter', mode = 'lines') %>%
+plot_ly(x = eth$index, y = Volatility, type = 'scatter', mode = 'lines') %>%
           layout(title = "Rolling Volatility With 30 Time Periods - Yang Zang Estimator",
                  xaxis = list(title = "Index"),
                  yaxis = list (title = "Volatility"))
@@ -83,12 +85,12 @@ plot_ly(x = eth$Date, y = volatility, type = 'scatter', mode = 'lines') %>%
 
 
 # Check for stationarity using ADF and KPSS tests
-adf.test(na.omit(volatility))
-kpss.test(na.omit(volatility), null="Trend")
+adf.test(na.omit(Volatility))
+kpss.test(na.omit(Volatility), null="Trend")
 
 # Test for checking ARCH ###
 library(fDMA)
-archtest(ts=volatility)
+archtest(ts=Volatility)
 
 # Exporting data to excel
 l <- list(df = eth)

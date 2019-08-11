@@ -1,49 +1,33 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[1]:
 
 #pip install https://github.com/matplotlib/mpl_finance/archive/master.zip
-
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings("ignore")
+
+
+
+# In[2]:
+
+
+
+df = pd.read_excel(r'D:\Sagar\Study\Sem3\Research_Thesis\Research_Project\Research\Code\Dataset\Updated_Ethereum.xlsx')
+df = df.reset_index()
 
 
 # In[3]:
 
 
-# plotly is an advanced visualization tool
-#import plotly.plotly as py
-#from plotly.offline import init_notebook_mode, iplot
-#init_notebook_mode(connected=True)
-#import plotly.graph_objs as go
-
-
-# In[ ]:
-
-
-import warnings
-warnings.filterwarnings("ignore")
-
-
-# In[4]:
-
-
-
-df = pd.read_excel(r'D:\Sagar\Study\Sem3\Research_Thesis\Research_Project\Research\Code\Dataset\Updated_Ethereum.xlsx')
-#df = df.iloc[::-1]
-df = df.reset_index()
-
-
-# In[5]:
-
-
 df.head(3)
 
 
-# In[8]:
+# In[4]:
 
 
 from mpl_finance import candlestick_ohlc
@@ -58,25 +42,20 @@ ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
 plt.show()
 
 
-# In[13]:
-
+# In[5]:
 
 df = df.drop(["Date"], axis=1)
 
 
-# In[14]:
+# In[6]:
 
 
 df.shape
 
 
-# In[15]:
-
+# In[7]:
 
 df.head()
-
-
-# ## GARCH (1,1)
 
 # In[16]:
 
@@ -97,7 +76,7 @@ df.head()
 #df['Volatility'] = df['stdev'] * (365**0.5) # Annualize.
 
 
-# In[19]:
+# In[8]:
 
 
 plt.figure(figsize=(16,6))
@@ -106,23 +85,20 @@ plt.title("Rolling Volatility With 30 Time Periods By Annualized Standard Deviat
 plt.show()
 
 
-# In[20]:
+# In[9]:
 
 
 df = df.dropna()
 
 
-# In[21]:
+# In[10]:
 
 
 vol = df["Volatility"] * 100
 
-
-# __The GARCH(1,1) model is:__
-# 
 # $$\sigma^2(t) = \alpha \times \sigma^2(t-1) + \beta \times e^2(t-1) + w$$
 
-# In[22]:
+# In[11]:
 
 
 from arch import arch_model
@@ -135,7 +111,7 @@ am = arch_model(vol, vol='Garch', p=1, o=1, q=1, dist='Normal')
 #am2 = arch_model(vol, vol='EGARCH', p=1, q=1, dist='Normal')
 
 
-# In[23]:
+# In[12]:
 
 
 res1 = am.fit()
@@ -148,7 +124,7 @@ res1.summary()
 
 #am1.fit.__code__	.co_varnames
 
-# In[24]:
+# In[13]:
 
 
 #df['forecast_vol'] = 0.1 * np.sqrt(res.params['omega'] + res.params['alpha[1]'] * res.resid**2 + res.conditional_volatility**2 * res.params['beta[1]'])
@@ -163,7 +139,7 @@ df['forecast_vol'] = 0.1 * np.sqrt(res1.params['omega'] + res1.params['alpha[1]'
 
 # After fitting the GARCH(1,1) model, by the formula above, it is possible to forecast rolling volatility. The last 10 rows of the final form of the data is displayed below.
 
-# In[25]:
+# In[14]:
 
 
 df.tail(10)
@@ -171,7 +147,7 @@ df.tail(10)
 
 # As it is expected it is seen in the graph below that, GARCH (1,1) model is a weak learner for such a time series. 
 
-# In[20]:
+# In[15]:
 
 
 plt.figure(figsize=(16,6))
@@ -186,7 +162,7 @@ plt.show()
 # In order to measure the performance of the model, __Root Mean Squared Error__ is used and the output of this measure for the last 1000 observations is shown below.
 # $$\sum{\sqrt{(\hat{X_i}-X_i)^2}}$$
 
-# In[26]:
+# In[16]:
 
 
 def rmse_tr(predictions, targets): return np.sqrt(((predictions - targets) ** 2).mean())
