@@ -24,25 +24,29 @@ This led to the proposal of the research question of:
 
 This research is done only on the basis of historical time series data without any consideration of external factors or news or change in governing policies by any influential countries. Any of the above-mentioned factors may imply in a sudden change of prices and volatilities which may be the limitation of this research. It is assumed that the current state of cryptocurrencies continue in the future as they are now. Moving forward with these assumptions, the next section of the report will include a brief review of the literature in the area of cryptocurrencies, volatility predictions using hybrid models and state of the art in the Ethereum price prediction. The proposed methodology to achieve the answers to the questions listed will be discussed after the review based on the literature. Next sections of this research paper will focus in detail on the implementation part following which will be a detailed discussion of the results obtained and how are they interpreted. Thus concluding this research and highlighting the possible future work which can add more value to the current research.
 
-
-
-1) Background
-2) Importance
-3) Research Question
-4) Limitations
-5) Assumptions
-6) Structure of the Report (following sections) "In the next section"
-
-
 ======================================================
 Related Work:
 
-Uniqueness of Ethereum as a cryptocurrency
+Cryptocurrency market is very loosely regulated. It has been in existence a little over a decade. Hence there is very little literature surrounding it. Most of the academic literature which is available these days is surrounding the popular cryptocurrency Bitcoin. <<Reference15>> The research conducted around this space speaks about the how Bitcoin can be used for conducting illegal activities. Another research conducted by the researchers from China talk about the concerns of the capital movement towards cryptocurrencies from financial markets in China. <<Reference16>>
 
-<<Reference14>>
+On the other hand academicians talk about how investing in Bitcoin or other cryptocurrencies can help making a investment portfolio stronger and how it has created new opportunities for investment. <<Reference17>> But the major limitation of their research is that it was conducted when the the prices were sky rocketing thus failing to detect and understand the negative shocks. To predict returns of Bitcoin by including it in portfolio of fiat currencies, one research uses the GARCH(1,1) and GARCH(1,2) <<Reference18>>. Though their results were interestingly stating the fact that Bitcoin forecasted better returns than the fiat currencies which they were compared across. 
 
+Uniqueness of Ethereum as a cryptocurrency is discussed by Wang et.al (2019) in their research paper <<Reference14>. They highlight that the use of Ethereum for smart contracts have a sizable amount of funds and huge number of accounts for trading it in the market. They also state the fact that being a cryptocurrency, Ethereum has very similar characteristics as that of Bitcoin. 
+
+To support the above research, white paper on Ethereum <<Reference19>> describes about how it is and updated version of other cryptocurrencies with unique features such as creating financial contracts. Being an open ended protocol, allowing people to develop applications and transacting the cryptocurrency for executing it is also possible. Taking all these factors into account, prices of Ethereum are not only based on economic factors alone thus making it hard to predict.
+
+Since GARCH Models and its variations are good at predicting such kind of volatile assets, they were chosen for this research. One of the research papers have compared twelve GARCH models across four cryptocurrencies. They discovered that GJR-GARCH(1,1) and IGARCH(1,1) were the best models for majority of the cases. GARCH(1,1) was best fit for Ripple cryptocurrency. Best fitting models were discovered based on the AIC, BIC and Hannan Quinn Criterion. <<Reference20>> Lower the value of the criterion, better is the GARCH fitting likelihood. Surprising enough this research excluded the Ethereum from its cryptocurrencies invoking more curiosity for the research. This research helps in understanding that even after being under the umbrella, every cryptocurrency behaves differently.
+
+Second part of research is to implement Artificial Neural Network (ANN) to reduce the error component from the obtained GARCH volatility. Similar kind of research is being around since more than a decade. First spotting of use of ANN for predicting the stock prices as in late 90's . It was carried out on stock price of IBM. The results obtained then were not that impressive, but it provided the required motivation for tuning the model to train and achieve the better results. <<Reference21>> Later research showed that combination of GARCH and Neural Network was way more capable of capturing the volatility accurately rather than GARCH alone. Thus motivating the research thereafter. <<Reference22>>
+
+Research done on Istanbul Stock Exchange in the year 2009 was one of the greatest motivations for carrying out this research. Data of the ISE 100 Index for this research was considered from October 1987 to February 2008. This data was nonlinear in nature and also has asymmetric clustering of volatility. These characteristics are very much similar to that of Ethereum. After using plethora of models, the research concluded that the combination of APGARCH model with ANN turned out to be best.<<Reference23>>
+
+The recent studies of 2018 proposed the use of Long Short Term Memory which is a type of Recurrent Neural Network for predicting the volatility of Bitcoin. Research used the similar kind of framework that is being proposed in this paper. Researchers used AR(2) model in association with LSTM. This research is very vital in terms to achieve our goals and objectives for the research.<<Research24>>
 
 Interestingly a non peer reviewed source suggested that the use of LSTM on financial time series 
+
+
+So it can be observed that as the time line shifts to more recent studies, it is found that the researchers are very keen and interested in opting for a hybrid model as of traditional models. As a result, hybrid model tends to provide the better results in terms of accuracy for predictions. Specially the ANN and its variation LSTM is being used to reduce the gap between the forecasted and actual values of Bitcoin and other highly volatile markets.
 
 ======================================================
 Methodology
@@ -200,6 +204,53 @@ https://link.springer.com/chapter/10.1007/3-540-44668-0_93
 
 13) https://playground.tensorflow.org/
 
-14) 
+14)Wang, X., Wu, H., Sun, W. and Zhao, Y. (2019). Towards
+Generating Cost-Effective Test-Suite for Ethereum Smart
+Contract. 2019 IEEE 26th International Conference on
+Software Analysis, Evolution and Reengineering (SANER).
+
+15) Böhme, R., Christin, N., Edelman, B. and Moore, T. (2015).
+Bitcoin: Economics, Technology, and Governance. Journal of
+Economic Perspectives, 29(2), pp.213-238.
+
+16)  Ju, L., Lu, T. and Tu, Z. (2015). Capital Flight and Bitcoin
+Regulation. International Review of Finance, 16(3), pp.445-
+455.
+
+17) Brière, M., Oosterlinck, K. and Szafarz, A. (2015). Virtual
+currency, tangible return: Portfolio diversification with
+bitcoin. Journal of Asset Management, 16(6), pp.365-373.
+
+18)Bhattacharjee, S., 2016. A statistical analysis of bitcoin
+transactions during 2012 to 2013 in terms of premier
+currencies: Dollar, Euro and Rubles. Vidwat, 9(1), p.8.
+
+19)Buterin, V., 2014. A next-generation smart contract and
+decentralized application platform. white paper.
+
+20)Chu, J., Chan, S., Nadarajah, S. and Osterrieder, J. (2017). GARCH Modelling of Cryptocurrencies. Journal of Risk and Financial Management, 10(4), p.17.
+
+21) White, H., (1988). Economic prediction using neural networks: The case of IBM daily stock returns.
+
+22) Kryzanowski, L., Galler, M. and Wright, D. (1993). Using Artificial Neural Networks to Pick Stocks. Financial Analysts Journal, 49(4), pp.21-27.
+
+23)Bildirici, M. and Ersin, Ö.Ö., 2009. Improving forecasts of GARCH family models with the artificial neural networks: An application to the daily returns in Istanbul Stock Exchange. Expert Systems with Applications, 36(4), pp.7355-7362.
+
+24)Wu, C., Lu, C., Ma, Y. and Lu, R. (2018). A New Forecasting Framework for Bitcoin Price with LSTM. 2018 IEEE International Conference on Data Mining Workshops
+(ICDMW).
+
+25) 
+
+26)
+
+27)
+
+28)
+
+29)
+
+30) 
+
+
 
 ======================================================
