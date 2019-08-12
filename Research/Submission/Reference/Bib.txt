@@ -1,0 +1,220 @@
+@article{kristjanpoller2018hybrid,
+  title={A hybrid volatility forecasting framework integrating GARCH, artificial neural network, technical analysis and principal components analysis},
+  author={Kristjanpoller, Werner and Minutolo, Marcel C},
+  journal={Expert Systems with Applications},
+  volume={109},
+  pages={1--11},
+  year={2018},
+  publisher={Elsevier}
+}
+
+@inproceedings{wirth2000crisp,
+  title={CRISP-DM: Towards a standard process model for data mining},
+  author={Wirth, R{\"u}diger and Hipp, Jochen},
+  booktitle={Proceedings of the 4th international conference on the practical applications of knowledge discovery and data mining},
+  pages={29--39},
+  year={2000},
+  organization={Citeseer}
+}
+
+@article{yang2000drift,
+  title={Drift-independent volatility estimation based on high, low, open, and close prices},
+  author={Yang, Dennis and Zhang, Qiang},
+  journal={The Journal of Business},
+  volume={73},
+  number={3},
+  pages={477--492},
+  year={2000},
+  publisher={JSTOR}
+}
+
+@book{fuller2009introduction,
+  title={Introduction to statistical time series},
+  author={Fuller, Wayne A},
+  volume={428},
+  year={2009},
+  publisher={John Wiley \& Sons}
+}
+
+@article{shin1992kpss,
+  title={The KPSS stationarity test as a unit root test},
+  author={Shin, Yongcheol and Schmidt, Peter},
+  journal={Economics Letters},
+  volume={38},
+  number={4},
+  pages={387--392},
+  year={1992},
+  publisher={Elsevier}
+}
+
+@article{engle1982autoregressive,
+  title={Autoregressive conditional heteroscedasticity with estimates of the variance of United Kingdom inflation},
+  author={Engle, Robert F},
+  journal={Econometrica: Journal of the Econometric Society},
+  pages={987--1007},
+  year={1982},
+  publisher={JSTOR}
+}
+
+@article{nelson1992inequality,
+  title={Inequality constraints in the univariate GARCH model},
+  author={Nelson, Daniel B and Cao, Charles Q},
+  journal={Journal of Business \& Economic Statistics},
+  volume={10},
+  number={2},
+  pages={229--235},
+  year={1992},
+  publisher={Taylor \& Francis Group}
+}
+
+@article{sentana1995quadratic,
+  title={Quadratic ARCH models},
+  author={Sentana, Enrique},
+  journal={The Review of Economic Studies},
+  volume={62},
+  number={4},
+  pages={639--661},
+  year={1995},
+  publisher={Wiley-Blackwell}
+}
+
+@article{glosten1993relation,
+  title={On the relation between the expected value and the volatility of the nominal excess return on stocks},
+  author={Glosten, Lawrence R and Jagannathan, Ravi and Runkle, David E},
+  journal={The journal of finance},
+  volume={48},
+  number={5},
+  pages={1779--1801},
+  year={1993},
+  publisher={Wiley Online Library}
+}
+
+@article{tealab2017forecasting,
+  title={Forecasting of nonlinear time series using ANN},
+  author={Tealab, Ahmed and Hefny, Hesham and Badr, Amr},
+  journal={Future Computing and Informatics Journal},
+  volume={2},
+  number={1},
+  pages={39--47},
+  year={2017},
+  publisher={Elsevier}
+}
+
+@incollection{gers2002applying,
+  title={Applying LSTM to time series predictable through time-window approaches},
+  author={Gers, Felix A and Eck, Douglas and Schmidhuber, J{\"u}rgen},
+  booktitle={Neural Nets WIRN Vietri-01},
+  pages={193--200},
+  year={2002},
+  publisher={Springer}
+}
+
+@inproceedings{wang2019towards,
+  title={Towards Generating Cost-Effective Test-Suite for Ethereum Smart Contract},
+  author={Wang, Xingya and Wu, Haoran and Sun, Weisong and Zhao, Yuan},
+  booktitle={2019 IEEE 26th International Conference on Software Analysis, Evolution and Reengineering (SANER)},
+  pages={549--553},
+  year={2019},
+  organization={IEEE}
+}
+
+@article{bohme2015bitcoin,
+  title={Bitcoin: Economics, technology, and governance},
+  author={B{\"o}hme, Rainer and Christin, Nicolas and Edelman, Benjamin and Moore, Tyler},
+  journal={Journal of Economic Perspectives},
+  volume={29},
+  number={2},
+  pages={213--38},
+  year={2015}
+}
+
+@article{ju2016capital,
+  title={Capital flight and bitcoin regulation},
+  author={Ju, Lan and Lu, Timothy and Tu, Zhiyong},
+  journal={International Review of Finance},
+  volume={16},
+  number={3},
+  pages={445--455},
+  year={2016},
+  publisher={Wiley Online Library}
+}
+
+@article{briere2015virtual,
+  title={Virtual currency, tangible return: Portfolio diversification with bitcoin},
+  author={Briere, Marie and Oosterlinck, Kim and Szafarz, Ariane},
+  journal={Journal of Asset Management},
+  volume={16},
+  number={6},
+  pages={365--373},
+  year={2015},
+  publisher={Springer}
+}
+
+@article{bhattacharjee2016statistical,
+  title={A statistical analysis of bitcoin transactions during 2012 to 2013 in terms of premier currencies: Dollar, Euro and Rubles},
+  author={Bhattacharjee, Sandeep},
+  journal={Vidwat},
+  volume={9},
+  number={1},
+  pages={8},
+  year={2016},
+  publisher={Dhruva College of Management}
+}
+
+@article{buterin2014next,
+  title={A next-generation smart contract and decentralized application platform},
+  author={Buterin, Vitalik and others},
+  journal={white paper},
+  volume={3},
+  pages={37},
+  year={2014}
+}
+
+@article{chu2017garch,
+  title={GARCH modelling of cryptocurrencies},
+  author={Chu, Jeffrey and Chan, Stephen and Nadarajah, Saralees and Osterrieder, Joerg},
+  journal={Journal of Risk and Financial Management},
+  volume={10},
+  number={4},
+  pages={17},
+  year={2017},
+  publisher={Multidisciplinary Digital Publishing Institute}
+}
+
+@article{white1988economic,
+  title={Economic prediction using neural networks: The case of IBM daily stock returns},
+  author={White, Halbert},
+  year={1988},
+  publisher={Department of Economics, University of California}
+}
+
+@article{kryzanowski1993using,
+  title={Using artificial neural networks to pick stocks},
+  author={Kryzanowski, Lawrence and Galler, Michael and Wright, David W},
+  journal={Financial Analysts Journal},
+  volume={49},
+  number={4},
+  pages={21--27},
+  year={1993},
+  publisher={Taylor \& Francis}
+}
+
+@article{bildirici2009improving,
+  title={Improving forecasts of GARCH family models with the artificial neural networks: An application to the daily returns in Istanbul Stock Exchange},
+  author={Bildirici, Melike and Ersin, {\"O}zg{\"u}r {\"O}mer},
+  journal={Expert Systems with Applications},
+  volume={36},
+  number={4},
+  pages={7355--7362},
+  year={2009},
+  publisher={Elsevier}
+}
+
+@inproceedings{wu2018new,
+  title={A New Forecasting Framework for Bitcoin Price with LSTM},
+  author={Wu, Chih-Hung and Lu, Chih-Chiang and Ma, Yu-Feng and Lu, Ruei-Shan},
+  booktitle={2018 IEEE International Conference on Data Mining Workshops (ICDMW)},
+  pages={168--175},
+  year={2018},
+  organization={IEEE}
+}

@@ -1,5 +1,17 @@
+
+########## HEADER ##############################################
+# Title: Python code file
+#  
+# Description: Volatility prediction for Ethereum
+# 
+# Name: Sagar Anil Tade
+# Student ID: x18109641
+################################################################
+
 #!/usr/bin/env python
-# coding: utf-8
+# coding: utf-8'
+
+#Code reffered from https://github.com/Bturan19/Neural-Garch-Hybrid-Model-Implementation/blob/master/Final_Proje_Denemesi.ipynb
 
 # In[1]:
 
@@ -137,15 +149,6 @@ df1["I"] = df1["I"].fillna(0)
 
 df['forecast_vol'] = np.sqrt(res1.params['omega'] + res1.params['alpha[1]'] * res1.resid**2 + res1.params['gamma[1]'] * res1.resid**2 * df1['I'] + res1.conditional_volatility**2 * res1.params['beta[1]'] ) ## Scaled from 0.1 to 0.01 when *3 then rmse minimum 0.49788 else 0.619080
 
-# After fitting the GARCH(1,1) model, by the formula above, it is possible to forecast rolling volatility. The last 10 rows of the final form of the data is displayed below.
-
-# In[14]:
-
-
-df.tail(10)
-
-
-# As it is expected it is seen in the graph below that, GARCH (1,1) model is a weak learner for such a time series. 
 
 # In[15]:
 
@@ -171,12 +174,6 @@ skor = rmse_tr(df.loc[df.index[300:], 'forecast_vol'], df.loc[df.index[300:], 'V
 print("Root Mean Squared Error of the GARCH(1,1) model is calculated as ",skor)
 #print("Root Mean Squared Error of the GJR-GARCH(1,1) model is calculated as ",skor11)
  
-
-# __Now the question is, by using the outputs of the GARCH (1,1) model as inputs, can we build a strong learner model?__
-# To find the answer of this question, we will use __Recurrent Neural Networks__ and the GARCH (1,1) outputs will be inputs along with real rolling volatilities
-
-# ## LSTM
-# __Firstly it is necessary to forecast volatility by the real rolling volatilities to be able to measure the performance two different models alone.__
 
 # In[22]:
 
@@ -244,6 +241,7 @@ regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
 # Fitting the RNN to the Training set
 regressor.fit(X_train, y_train, epochs = 100, batch_size = 32)
 
+regressor.summary()
 
 # In[66]:
 
@@ -278,10 +276,7 @@ plt.legend()
 plt.show()
 
 
-# Even though we did not try to build a state of the art LSTM model, yet it is quite impressive, especially on the graphic. However, the graphic might be illusional because we had too many data points in it. That's why we should again measure the goodnes of the model and try to make it better with by combining the garch results.
-# 
-# On the other hand, we should be aware of the mimick behaviours of the LSTM and in our case, our model try to mimicks the real data with a lag.
-# 
+
 
 # In[42]:
 

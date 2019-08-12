@@ -1,9 +1,8 @@
 
 ########## HEADER ##############################################
-# Title: R code file related to Financial project
+# Title: R code file
 #  
-# Description: 
-# Ethereum
+# Description: Volatility prediction for Ethereum
 # 
 # Name: Sagar Anil Tade
 # Student ID: x18109641

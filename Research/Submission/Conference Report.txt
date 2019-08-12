@@ -45,7 +45,6 @@ The recent studies of 2018 proposed the use of Long Short Term Memory which is a
 
 Interestingly a non peer reviewed source suggested that the use of LSTM on financial time series 
 
-
 So it can be observed that as the time line shifts to more recent studies, it is found that the researchers are very keen and interested in opting for a hybrid model as of traditional models. As a result, hybrid model tends to provide the better results in terms of accuracy for predictions. Specially the ANN and its variation LSTM is being used to reduce the gap between the forecasted and actual values of Bitcoin and other highly volatile markets.
 
 ======================================================
@@ -132,7 +131,7 @@ To reduce the error in the GJR-GARCH model forecasting, its volatility is fed to
 Evaluation
 
 
-Even though we did not try to build a state of the art LSTM model, yet it is quite impressive, especially on the graphic. However, the graphic might be illusional because we had too many data points in it. That's why we should again measure the goodnes of the model and try to make it better with by combining the garch results.
+Even though we did not try to build a state of the art LSTM model, yet it is quite impressive, especially on the graphic. However, the graphic might be illusion because we had too many data points in it. That's why we should again measure the goodness of the model and try to make it better with by combining the garch results.
 
 
 
@@ -165,6 +164,21 @@ gamma[1]   2.8570e-08  4.335e-02  6.590e-07      1.000 [-8.497e-02,8.497e-02]
 beta[1]    2.3871e-15  1.923e-02  1.242e-13      1.000 [-3.769e-02,3.769e-02]
 =============================================================================
 
+
+First evaluation of this research will be the GJR-GARCH(1,1) Model. Below table shows the summary of the model. It has all the details about the model run. We can understand that the Residuals are 1416 which are 5 less than the number of observations 1421. It also shows the log likelihood of the model which is -45.8285.  The most important values from that summary for us are the coefficients omega, aplha, beta and gamma. Also the the number of residuals as each residual value will be fitted into the equation mentioned above of GJR-GARCH for volatility prediction. By using that we are calculating the rolling window forecasted frequency of GJR-GARCH(1,1) for each data point.
+
+Next evaluation consists of finding the Root mean squared error between the actual and the predicted volatilities by the GJR-GARCH(1,1) model. The formula for which is \begin{math} \operatorname{RMSE}(\hat{\theta}) = \sqrt{\operatorname{MSE}(\hat{\theta})} = \sqrt{\operatorname{E}((\hat{\theta}-\theta)^2)}.\end{math}
+Where \theta is the actual values and \hat{\theta} are the predicted ones. This will be the measure for calculating the effectiveness of the model. In this case RMSE obtained was 0.6986
+
+Next step involved using LSTM on the volatility to check what is its RMSE to check the effectiveness of LSTM on the forecasted volatility values. It was observed that the LSTM has mimicked the real data with lag. But even with this the RMSE obtained was 0.6071. RMSE value obtained from the LSTM is 13.09% better than that of the GJR-GARCH(1,1) Model.
+
+For its final step, that is to verify if the hybrid model of ANN-GARCH provides a significant improvement in the volatility prediction, volatility values obtained from rolling window approach for GJR-GARCH(1,1) were passed along with the actual Volatility to train the model. Following results were obtained. 
+
+<<Image 5>>
+
+From the graphical representation, it seems like the model has generated the better results than standalone LSTM and GJR-GARCH(1,1). RMSE obtained for the same is 0.5894, which is a better indication. But the RMSE is improved only by 2.03%. 
+
+So the question still remains, is it worth having a hybrid model to increase the performance by 2%. One of the reasons for such results could be the lack of data points. Currently there are only 1451 daily observations for the time series. Heavy models such as LSTM works well with way more data points than this. With that being said, Artificial Neural Networks is performing well in training the model and can yield good results by itself. 
 ======================================================
 Conclusion and Future Work
 
